@@ -14,6 +14,6 @@ skynet.start(function()
 		nodelay = true,
 	})
 	print("Watchdog listen on ", 8888)
-
+        skynet.newservice("game_main")
 	skynet.exit()
 end)
