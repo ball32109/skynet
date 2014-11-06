@@ -1,7 +1,7 @@
 
 local skynet = require "skynet"
 local util = require "util"
-local mongo = require "lmongo"
+local mongo = require "mongolib"
 local mc = mongo.init(".mongodb",skynet.call,skynet.send)
 
 skynet.start(function()
