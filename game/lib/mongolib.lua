@@ -60,6 +60,10 @@ function mongo_db:getcollection(collection)
 	return col
 end
 
+function mongo_db:sharecollection(collection,key)
+	self.send(self.service,"lua","sharecollection",{database = self.database,collection = collection,key = key})
+end
+
 function mongo_collection:insert(doc)
 	self.send(self.service,"lua","insert",{database = self.database,collection = self.collection,doc = doc})
 end
@@ -99,6 +103,22 @@ function mongo_collection:findBatch(query,selector,limit, skip)
 		end
 	end
 	return result
+end
+
+function mongo_collection:makeindex(field,is_unique)
+	local name
+	for k,v in pairs(field) do
+		name = "i_"..k
+	end
+	local indexes_tb = {
+		key = field,
+		ns = self.database.."."..self.collection,
+		name = name
+	}
+	if is_unique then
+		indexes_tb["unique"] = 1
+	end
+	self.send(self.service,"lua","insert",{database = self.database,collection = "system.indexes",doc = indexes_tb})
 end
 
 

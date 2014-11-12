@@ -41,3 +41,5 @@ function vector2.movetowards(vt1,vt2,max_distance)
 
 	return {x = x,y = y}
 end
+
+return vector2

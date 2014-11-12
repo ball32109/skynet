@@ -1,5 +1,7 @@
 local mongo = require "mongo"
 local skynet = require "skynet"
+local bson = require "bson"
+local util = require "util"
 
 local args = ...
 local host,port = string.match(args,"(%w+.%w+.%w+.%w+):(%d+)")
@@ -123,8 +125,8 @@ function command.update(args)
 end
 
 function command.insert(args)
-	local d,collection = string.match(args.collection,"(%w+).(.*)")
-	local c = db:getCollection(collection)
+	local db = client:getDB(args.database)
+	local c = db:getCollection(args.collection)
 	c:insert(args.doc)
 end
 
@@ -141,9 +143,21 @@ end
 
 function command.clearMem()
 	local admin = client:getDB("admin")
-	local r = admin:runCommand({{closeAllDatabases = 1}})
+	local r = admin:runCommand("closeAllDatabases",1)
 	print("closeAllDatabases:")
-	global.dump_table(r)
+	util.dump_table(r)
+end
+
+function command.sharecollection(args)
+	local admin = client:getDB("admin")
+	local r = admin:runCommand("enablesharding",args.database)
+	print("enablesharding:")
+	util.dump_table(r)
+	local field = {}
+	field[args.key] = 1
+	local r = admin:runCommand("shardcollection",string.format("%s.%s",args.database,args.collection),"key",bson.encode(field))
+	print("shardcollection:")
+	util.dump_table(r)
 end
 
 function command.stop()
