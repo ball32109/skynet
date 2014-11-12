@@ -1,5 +1,0 @@
-id,itemid,count,point,endRow
-*uint,uint,uint,uint,
-#序号,物品ID,数量,要求兑换点,
-1,1307101308,1,50,
-2,1307101309,1,200,
