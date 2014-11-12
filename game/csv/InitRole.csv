@@ -1,0 +1,6 @@
+id,name,loginName,iconSHead,iconHead,asset,hpStar,attStar,defStar,describe,atkRange,moveSpeed,sex,t
+*uint,string,string,int,int,int,int,int,int,string,int,int,int,
+#职业id,名称,创建角色界面文字映射,小头像,头像,模型,攻星,防星,敏捷,描述,攻击范围,移动速度,性别,行尾
+1,圣骑,career1,1812001,,,3,4,3,圣光审判，完美防御。,,,2,
+2,魔剑,career2,1814001,,,4,2,4,疾风幻影，死亡之舞。,,,2,
+4,狂战,career3,1811101,,,4,3,3,怒血战意，杀戮旋风,,,1,

@@ -1,0 +1,6 @@
+id,item_id,time,exchange_times,price,vip_level,vip_price,endRow
+*uint,uint,uint,uint,uint,uint,uint,
+#礼盒编号,礼盒itemid,限时抢购时间(单位秒）,兑换次数,正常价格,vip等级,vip价格,
+1,1307101301,259200,1,1000,3,500,
+2,1307101302,259200,1,4000,5,2000,
+3,1307101303,259200,1,8000,8,4000,
